@@ -1,0 +1,8 @@
+POST https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/user
+Content-Type: application/application
+
+{
+    "uuid": "uuid",
+    "profileNickname": "profileNickname",
+    "profileThumbnailImage": "profileThumbnailImage"
+}

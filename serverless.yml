@@ -1,23 +1,69 @@
-service: imageUploadDemo
+service: voiceUpload
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs12.x
+  profile: aulab
+  region: ap-northeast-2
+  environment:
+    USER_TABLE: aulab-voice-user-table
   # Provide permissions for this service to manipulate S3.
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "s3:*"
-      Resource: "arn:aws:s3:::[bucketName]/*"
+      Resource: "arn:aws:s3:::aulab-voice-bucket/*"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
 
 # Expose function to public API for POST requests.
 functions:
-  requestUploadURL:
-    handler: handler.requestUploadURL
+  voices:
+    handler: upload.requestUploadURL
     events:
       - http:
-          path: requestUploadURL
+          path: voices
           method: post
+          cors: true
+  downloads:
+    handler: download.requestDownloadURL
+    events:
+      - http:
+          path: voice
+          method: get
+          cors: true
+  InsertUser:
+    handler: user.insert
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+  EditUser:
+    handler: user.edit
+    events:
+      - http:
+          path: user
+          method: put
+          cors: true
+  DelteUser:
+    handler: user.delete
+    events:
+      - http:
+          path: user
+          method: delete
+          cors: true
+  GetUser:
+    handler: user.get
+    events:
+      - http:
+          path: user
+          method: get
           cors: true
 
 # Give service access to the specific S3 bucket.
@@ -26,7 +72,7 @@ resources:
     UploadBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: [bucketName]
+        BucketName: aulab-voice-bucket
         AccessControl: PublicRead
         CorsConfiguration:
           CorsRules:
@@ -39,3 +85,23 @@ resources:
             - "*"
             AllowedHeaders:
             - "*"
+    UserDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "uuid"
+            AttributeType: "S"
+          - AttributeName: "type"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "uuid"
+            KeyType: "HASH"
+          - AttributeName: "type"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.USER_TABLE}

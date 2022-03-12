@@ -1,35 +1,22 @@
 # Serverless Direct S3 File Upload
 
-This example uses the [Serverless](https://serverless.com/) framework to show how sites can enable visitors to upload files directly to [S3](https://aws.amazon.com/s3/), rather than through a webserver.
-
-## Why use the direct upload pattern?
-File uploads are a common website feature however it is not immediately apparent how to build them when using the [Serverless stack](https://angerhofer.co/posts/tags/serverless).  In a traditional model, a web server receives the upload from the client/browser and sends it along to storage (whatever form that may take -- e.g. saved on disk, saved _into_ a database, uploaded to S3, etc.).
-
-This is a relatively time-intensive task for the web server, so S3 introduces an alternative: temporary access privileges.  This alternate pattern has two steps.  First, the [Lambda](https://aws.amazon.com/lambda/) function asks S3 through our IAM credentials for a public link that will let the browser upload the file directly to an S3 bucket.  It returns this link to the browser, which subsequently `PUT`s the file to the link and completes the upload.
-
-This model takes a fair bit of load off our Lambda functions without sacrificing the security of the upload, saving otherwise significant costs.
-
-## Why S3?
-There are a plethora of good reasons to use S3 to store your application's file uploads and you can find a much more exhaustive rundown with a quick Google search than I could hope to describe here.  In short, S3 takes all the fretting out of storing, serving up, and backing up you application's files.
-
-## Public Link Mechanism
-[Line 23 in `handler.js`](https://github.com/jangerhofer/serverlessS3Upload/blob/master/handler.js#L23): `var uploadURL = s3.getSignedUrl('putObject', s3Params);`
-
-[This method](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property) asks S3 to generate a single-use link that will allow a browser that is NOT authenticated with AWS to upload a specific file (as specified by the `POST` request outlined below) to the application's S3 bucket.  That way, the file being uploaded never touches the Lambda server and instead goes directly from the browser into storage.
 
 ## Usage
-_Assuming AWS credentials and Serverless are already configured properly._
-- `npm install` the two dependencies.
-- Replace the `[bucketName]` placeholder in both `handler.js` and `serverless.yml` with the desired bucket in which uploads will be stored.
-- `serverless deploy` the service to AWS.
-- `POST` to the API Gateway endpoint to generate a single-use upload link. _N.b. If either of these parameters does not match the file which is uploaded in the next step, S3 will throw an error and refuse the upload._
-  - `POST` should have two `x-www-form-urlencoded` paramters:
-    - `name`: Filename to be uploaded.
-    - `type`: [MIME Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of file.
-- Create a `PUT` request via your interface of choice (e.g. AJAX call, [Postman](https://www.getpostman.com/) request, or curl).  The URL will be the result from the previous `POST`.  Attach the file Blob/binary to the request and specify the proper headers for the `Content-Type`.
-  - e.g. in Curl:
-  ```
-  curl -v -H 'Content-Type: image/png' -T ./testFile.png "https://[bucketName].s3.amazonaws.com/testFile.png?long_query_string..."
-  ```
 
-  Et voila!  Your bucket should now have the new file.
+### Getting Upload URL
+```
+curl -X POST  -H "Content-Type: application/x-www-form-urlencoded"  https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/voices -d "name=hello_world.mp3"
+
+
+{"uploadURL":"https://aulab-voice-bucket.s3.ap-northeast-2.amazonaws.com/hello_world.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA4B6CRKJZDGYPZ7N3%2F20211214%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20211214T161539Z&X-Amz-Expires=900&X-Amz-Security-Token=xxx&X-Amz-Signature=56f902bc527a64efb2b01f40b2cf3806588de7dc133de6ed8364287b52deea7d&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read"}
+```
+
+
+### Uploading file
+```
+# curl -v -H 'Content-Type: audio/mpeg' -T ./hello_world.mp3 https://[bucket].s3.ap-northeast-2.amazonaws.com/hello_world.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA4B6CRKJZE2PYSHPB%2F20211214%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20211214T162750Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHgaDmFwLW5vcnRoZWFzdC0yIkcwRQIgaSAmEXl9U5D0T%2FUcbRBSBAJ%2FmMhYdsJbmHosYLsbLRwCIQC7qnTdPro7R86FdeUsHKJJXe1znEOnU7wKDNjkXN5RwyqbAghiEAAaDDgyODc5OTc5OTkyMiIMEZFK5AL%2FKoV8%2FES5KvgBFFtbtQXVL01ZeW9cyjMZEoE01wlXp%2FY0Ufs39lqvW2WGcqarMJX1ufYaaPnWb5ZhYJErBmnPJ5ldMgmiMDSlyPXt0UpWnj2vr%2F%2FuuXUL70FVGqNSvEkWesiYHVi2ZnhfqYrHQ7rRAGhqezICIHIS3YtX7JGV7Eh02buPmlMz4V2df8aoOuP0r0lN%2BotMVY62LYJ0Pb3vmfkDzOl9F7IcWaRDkrSwZlpYEkJDpP6dLRsF7ZIDSNU2qFx1CWdUI4%2FtBRBPPUh1uL02ocld5whSANBY4kFNn0EqjFlV5oYJtkQ1JIJyTkMeq2CumSo0xBZJbvkMpz0eQCAwwYnjjQY6mgHCk9RkwFbbKtWHrYnM%2BjEZyaVXnvpZ1%2FlWk4DlWNMDNjX6KuN7c8yDYe4Ibqb5RCkkKJQcOluEZuk6sLC1djUthdQXyk5nTbbmgvobqgoe6RR82iwB6txOxgEdVYAjgslmnWzW48XPj8yEz%2FpatVWPSuItS78Eb7i073baqJOLWnedsOBGrBA9j%2B9pY6DDDu8M0zkgkojxKqvQ&X-Amz-Signature=631ce2f0ad0566d3ed63bf363eec0f6e1eec5349a446136a14317d227eb1ef56&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read
+```
+
+
+## Reference
+- [DynamoDB](https://www.serverless.com/blog/node-rest-api-with-serverless-lambda-and-dynamodb)
