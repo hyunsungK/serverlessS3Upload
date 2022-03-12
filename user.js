@@ -2,7 +2,9 @@
 
 const {
     registerUser,
-    createUserInfo
+    createUserInfo,
+    getUser,
+    deleteUser
 } = require('./dynamo');
 
 module.exports.insert = (event, context, callback) => {
@@ -21,7 +23,7 @@ module.exports.insert = (event, context, callback) => {
         profileThumbnailImage,
         favorite)
 
-    const result = registerUser(userInfo)
+    registerUser(userInfo)
         .then((res) => {
             const response = {
                 statusCode: 201,
@@ -45,22 +47,25 @@ module.exports.insert = (event, context, callback) => {
 };
 
 module.exports.get = (event, context, callback) => {
-
-    const userInfo = createUserInfo(
-        "uuid",
-        "profileNickname",
-        "profileThumbnailImage",
-        true);
-    const response = {
-        statusCode: 201,
-        body: JSON.stringify({
-            message: 'User get',
-            input: event,
-            output: userInfo
-        }),
-    };
-
-    callback(null, response);
+    getUser(event.pathParameters.id)
+        .then((res) => {
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify({
+                    message: 'OK',
+                    output: res
+                }),
+            });
+        })
+        .catch(err => {
+            callback(null, {
+                statusCode: 500,
+                body: JSON.stringify({
+                    message: 'Fail to get user',
+                    output: err
+                }),
+            });
+        });
 };
 
 
@@ -77,13 +82,23 @@ module.exports.edit = (event, context, callback) => {
 };
 
 module.exports.delete = (event, context, callback) => {
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'User Delete',
-            input: event,
-        }),
-    };
-
-    callback(null, response);
+    deleteUser(event.pathParameters.id)
+        .then((res) => {
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify({
+                    message: 'OK',
+                    output: res
+                }),
+            });
+        })
+        .catch(err => {
+            callback(null, {
+                statusCode: 500,
+                body: JSON.stringify({
+                    message: 'Fail to get user',
+                    output: err
+                }),
+            });
+        });
 };

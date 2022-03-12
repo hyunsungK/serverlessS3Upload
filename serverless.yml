@@ -19,6 +19,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
+        - dynamodb:DeleteItem
       Resource: "*"
 
 # Expose function to public API for POST requests.
@@ -55,14 +56,14 @@ functions:
     handler: user.delete
     events:
       - http:
-          path: user
+          path: user/{id}
           method: delete
           cors: true
   GetUser:
     handler: user.get
     events:
       - http:
-          path: user
+          path: user/{id}
           method: get
           cors: true
 

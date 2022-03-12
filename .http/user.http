@@ -1,8 +1,18 @@
 POST https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/user
-Content-Type: application/application
+Content-Type: application/json
 
 {
-    "uuid": "uuid",
+    "uuid": "uuid1",
     "profileNickname": "profileNickname",
     "profileThumbnailImage": "profileThumbnailImage"
 }
+
+### Get the
+GET https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/user/uuid1
+Content-Type: application/json
+
+
+
+### Delete the
+DELETE https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/user/uuid1
+Content-Type: application/json

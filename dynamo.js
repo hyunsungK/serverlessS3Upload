@@ -17,6 +17,32 @@ module.exports.registerUser = (userInfo) => {
         .then(res => newUserInfo);
 };
 
+module.exports.getUser = (userId) => {
+    console.log('getUser userInfo');
+    const params = {
+        TableName: "aulab-voice-user-table",
+        Key: {
+            uuid: userId,
+            type: "profile"
+        }
+    };
+    return dynamoDb.get(params).promise()
+        .then(result => result);
+}
+
+module.exports.deleteUser = (userId) => {
+    console.log('deleteUser userInfo');
+    const params = {
+        TableName: "aulab-voice-user-table",
+        Key: {
+            uuid: userId,
+            type: "profile"
+        }
+    };
+    return dynamoDb.delete(params).promise()
+        .then(result => result);
+}
+
 module.exports.createUserInfo = (
     uuid,
     profileNickname,
