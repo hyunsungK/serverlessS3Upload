@@ -7,6 +7,8 @@ provider:
   region: ap-northeast-2
   environment:
     USER_TABLE: aulab-voice-user-table
+    ALARM_TABLE: aulab-voice-alarm-table
+    FRIEND_TABLE: aulab-voice-friend-table
   # Provide permissions for this service to manipulate S3.
   iamRoleStatements:
     - Effect: "Allow"
@@ -67,6 +69,63 @@ functions:
           method: get
           cors: true
 
+  InsertFriend:
+    handler: friend.insert
+    events:
+      - http:
+          path: friend
+          method: post
+          cors: true
+  EditFriend:
+    handler: friend.edit
+    events:
+      - http:
+          path: friend
+          method: put
+          cors: true
+  DelteFriend:
+    handler: friend.delete
+    events:
+      - http:
+          path: friend/{id}
+          method: delete
+          cors: true
+  GetFriend:
+    handler: friend.get
+    events:
+      - http:
+          path: friend/{id}
+          method: get
+          cors: true
+
+  InsertAlarm:
+    handler: alarm.insert
+    events:
+      - http:
+          path: alarm
+          method: post
+          cors: true
+  EditAlarm:
+    handler: alarm.edit
+    events:
+      - http:
+          path: alarm
+          method: put
+          cors: true
+  DelteAlarm:
+    handler: alarm.delete
+    events:
+      - http:
+          path: alarm/{id}
+          method: delete
+          cors: true
+  GetAlarm:
+    handler: alarm.get
+    events:
+      - http:
+          path: alarm/{id}
+          method: get
+          cors: true
 # Give service access to the specific S3 bucket.
 resources:
   Resources:
@@ -106,3 +165,43 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.USER_TABLE}
+    FriendDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "uuid"
+            AttributeType: "S"
+          - AttributeName: "type"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "uuid"
+            KeyType: "HASH"
+          - AttributeName: "type"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.FRIEND_TABLE}
+    AlarmDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "receiver_id"
+            AttributeType: "S"
+          - AttributeName: "time"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "receiver_id"
+            KeyType: "HASH"
+          - AttributeName: "time"
+            KeyType: "RANGE"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.ALARM_TABLE}

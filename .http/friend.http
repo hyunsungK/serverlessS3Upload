@@ -1,0 +1,21 @@
+POST https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/friend
+Content-Type: application/json
+
+{
+    "uuid": "uuid1",
+    "profileNickname": "profileNickname",
+    "profileThumbnailImage": "profileThumbnailImage",
+    "favorite": true
+}
+
+
+
+### Get the
+GET https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/friend/uuid1
+Content-Type: application/json
+
+
+
+### Delete the
+DELETE https://dst0smadj7.execute-api.ap-northeast-2.amazonaws.com/dev/friend/uuid1
+Content-Type: application/json

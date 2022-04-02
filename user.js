@@ -5,7 +5,7 @@ const {
     createUserInfo,
     getUser,
     deleteUser
-} = require('./dynamo');
+} = require('./crud/userDao');
 
 module.exports.insert = (event, context, callback) => {
     const requestBody = JSON.parse(event.body);
@@ -13,15 +13,13 @@ module.exports.insert = (event, context, callback) => {
     const {
         uuid,
         profileNickname,
-        profileThumbnailImage,
-        favorite=false
+        profileThumbnailImage
     } = requestBody;
 
     const userInfo = createUserInfo(
         uuid,
         profileNickname,
-        profileThumbnailImage,
-        favorite)
+        profileThumbnailImage)
 
     registerUser(userInfo)
         .then((res) => {

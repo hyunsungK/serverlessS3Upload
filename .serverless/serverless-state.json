@@ -10,7 +10,9 @@
       "profile": "aulab",
       "region": "ap-northeast-2",
       "environment": {
-        "USER_TABLE": "aulab-voice-user-table"
+        "USER_TABLE": "aulab-voice-user-table",
+        "ALARM_TABLE": "aulab-voice-alarm-table",
+        "FRIEND_TABLE": "aulab-voice-friend-table"
       },
       "iamRoleStatements": [
         {
@@ -143,6 +145,54 @@
               "LogGroupName": "/aws/lambda/voiceUpload-dev-GetUser"
             }
           },
+          "InsertFriendLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-InsertFriend"
+            }
+          },
+          "EditFriendLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-EditFriend"
+            }
+          },
+          "DelteFriendLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-DelteFriend"
+            }
+          },
+          "GetFriendLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-GetFriend"
+            }
+          },
+          "InsertAlarmLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-InsertAlarm"
+            }
+          },
+          "EditAlarmLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-EditAlarm"
+            }
+          },
+          "DelteAlarmLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-DelteAlarm"
+            }
+          },
+          "GetAlarmLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/voiceUpload-dev-GetAlarm"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -233,7 +283,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "upload.requestUploadURL",
               "Runtime": "nodejs12.x",
@@ -242,7 +292,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -263,7 +315,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "download.requestDownloadURL",
               "Runtime": "nodejs12.x",
@@ -272,7 +324,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -293,7 +347,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "user.insert",
               "Runtime": "nodejs12.x",
@@ -302,7 +356,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -323,7 +379,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "user.edit",
               "Runtime": "nodejs12.x",
@@ -332,7 +388,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -353,7 +411,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "user.delete",
               "Runtime": "nodejs12.x",
@@ -362,7 +420,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -383,7 +443,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z/voiceUpload.zip"
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
               },
               "Handler": "user.get",
               "Runtime": "nodejs12.x",
@@ -392,7 +452,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "aulab-voice-user-table"
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
                 }
               },
               "Role": {
@@ -406,64 +468,400 @@
               "GetUserLogGroup"
             ]
           },
-          "VoicesLambdaVersionoflZErMgGABI9RdnLF382FFh4wf8kihQCBRwN0wXhs": {
+          "InsertFriendLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "friend.insert",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-InsertFriend",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "InsertFriendLogGroup"
+            ]
+          },
+          "EditFriendLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "friend.edit",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-EditFriend",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "EditFriendLogGroup"
+            ]
+          },
+          "DelteFriendLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "friend.delete",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-DelteFriend",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DelteFriendLogGroup"
+            ]
+          },
+          "GetFriendLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "friend.get",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-GetFriend",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetFriendLogGroup"
+            ]
+          },
+          "InsertAlarmLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "alarm.insert",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-InsertAlarm",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "InsertAlarmLogGroup"
+            ]
+          },
+          "EditAlarmLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "alarm.edit",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-EditAlarm",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "EditAlarmLogGroup"
+            ]
+          },
+          "DelteAlarmLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "alarm.delete",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-DelteAlarm",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DelteAlarmLogGroup"
+            ]
+          },
+          "GetAlarmLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z/voiceUpload.zip"
+              },
+              "Handler": "alarm.get",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "voiceUpload-dev-GetAlarm",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "aulab-voice-user-table",
+                  "ALARM_TABLE": "aulab-voice-alarm-table",
+                  "FRIEND_TABLE": "aulab-voice-friend-table"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetAlarmLogGroup"
+            ]
+          },
+          "VoicesLambdaVersionZ7Ar3z1QktiVOVH0n9jq7YA1GrdUR5344SjEaGShzBs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "VoicesLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
-          "DownloadsLambdaVersiongJKsi4RZIWVd5bCbZ5AJl12MHjKAAsYa2XZmOG85cQc": {
+          "DownloadsLambdaVersionStoD6M4tfTuFB2tAQPCFbbgdBfaUiTakzrWtf4e8k": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DownloadsLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
-          "InsertUserLambdaVersion9ysJiEF0D3YSLG7ESNl7pHP0Po1FUjWiU47iOT8YBz8": {
+          "InsertUserLambdaVersionjmlCwSIidEIUu3s4nn7loDQ1ZqpXWhZD2fWA2e84Ew": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "InsertUserLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
-          "EditUserLambdaVersionGvbQ5y7XrsaqOgBITogfZHXUK4Z1nc6HHbDMJaubls": {
+          "EditUserLambdaVersionkNdfJAKKbpnqF2Jck3I5b67sYvZk5XWsxveoW3q8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "EditUserLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
-          "DelteUserLambdaVersionW8FE44lXxcd6MgGHcrTVyMwrqLdYmocjQ0xejNXruo": {
+          "DelteUserLambdaVersionUCLE8GZNUUWjqF4Fs4Iundtfr63pisNO25CrcyadSU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DelteUserLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
-          "GetUserLambdaVersionkpepCrdv5TK5W8mckFtQ9nHRAet0h0u0qPSr6tBAY": {
+          "GetUserLambdaVersion2xzk2vieqJKeRLZuNUVAqf8LQkIn3EdJrwTah8qZL8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserLambdaFunction"
               },
-              "CodeSha256": "EikaVjTsJy2fNTQnNRrKOrkPAVSkL4bhAJALGx/EOz0="
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "InsertFriendLambdaVersionrCMrKWgYiCmpWcNHrvZD2tG7qif9VC9WoQLxxipQIQ": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "InsertFriendLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "EditFriendLambdaVersionAiv8sXWUr0HJ7bf2SsnRQ3WnLbmjv0tCYelG3Ubk": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "EditFriendLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "DelteFriendLambdaVersionfqwBGmKkbLHci0gSuhQ2az37UmMBSskbhUHWKNQ2xVE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DelteFriendLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "GetFriendLambdaVersionOQUAmhkGokKYHuekXmsNmw8U2FKkQys4uZ1NIhXM4Yw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetFriendLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "InsertAlarmLambdaVersion6nT44ctSMW0cnkbEdk2JC5IsCnvdgCJwWMsChRTQg": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "InsertAlarmLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "EditAlarmLambdaVersion0bDXlwjOnAGh5pYlWbC6Iv7iXcozaEL0iMQCa2BAw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "EditAlarmLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "DelteAlarmLambdaVersioneUvvGvxCQxlxhNtbiv1UmUNcXbddHYWdr1LJH9h6k": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DelteAlarmLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
+            }
+          },
+          "GetAlarmLambdaVersionwFUYYMrO9Ma8WykGuBqlckDQWtkjOPnipVjmcdGU0": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetAlarmLambdaFunction"
+              },
+              "CodeSha256": "ADAkjbqtTqnSn+PB/DCnCFtqeCCeYRmvf+0Eu7WwsHE="
             }
           },
           "ApiGatewayRestApi": {
@@ -528,6 +926,60 @@
             "Properties": {
               "ParentId": {
                 "Ref": "ApiGatewayResourceUser"
+              },
+              "PathPart": "{id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceFriend": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "friend",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceFriendIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceFriend"
+              },
+              "PathPart": "{id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceAlarm": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "alarm",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceAlarmIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceAlarm"
               },
               "PathPart": "{id}",
               "RestApiId": {
@@ -709,6 +1161,186 @@
               },
               "ResourceId": {
                 "Ref": "ApiGatewayResourceUserIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodFriendOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriend"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodFriendIdVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,DELETE'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriendIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodAlarmOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarm"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodAlarmIdVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,DELETE'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarmIdVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -991,7 +1623,375 @@
               "GetUserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1647072323673": {
+          "ApiGatewayMethodFriendPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriend"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "InsertFriendLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "InsertFriendLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodFriendPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriend"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "EditFriendLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "EditFriendLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodFriendIdVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriendIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DelteFriendLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "DelteFriendLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodFriendIdVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceFriendIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetFriendLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "GetFriendLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodAlarmPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarm"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "InsertAlarmLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "InsertAlarmLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodAlarmPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarm"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "EditAlarmLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "EditAlarmLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodAlarmIdVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarmIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DelteAlarmLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "DelteAlarmLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayMethodAlarmIdVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceAlarmIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetAlarmLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "GetAlarmLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayDeployment1648879829691": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1004,12 +2004,24 @@
               "ApiGatewayMethodVoiceOptions",
               "ApiGatewayMethodUserOptions",
               "ApiGatewayMethodUserIdVarOptions",
+              "ApiGatewayMethodFriendOptions",
+              "ApiGatewayMethodFriendIdVarOptions",
+              "ApiGatewayMethodAlarmOptions",
+              "ApiGatewayMethodAlarmIdVarOptions",
               "ApiGatewayMethodVoicesPost",
               "ApiGatewayMethodVoiceGet",
               "ApiGatewayMethodUserPost",
               "ApiGatewayMethodUserPut",
               "ApiGatewayMethodUserIdVarDelete",
-              "ApiGatewayMethodUserIdVarGet"
+              "ApiGatewayMethodUserIdVarGet",
+              "ApiGatewayMethodFriendPost",
+              "ApiGatewayMethodFriendPut",
+              "ApiGatewayMethodFriendIdVarDelete",
+              "ApiGatewayMethodFriendIdVarGet",
+              "ApiGatewayMethodAlarmPost",
+              "ApiGatewayMethodAlarmPut",
+              "ApiGatewayMethodAlarmIdVarDelete",
+              "ApiGatewayMethodAlarmIdVarGet"
             ]
           },
           "VoicesLambdaPermissionApiGateway": {
@@ -1234,6 +2246,302 @@
               }
             }
           },
+          "InsertFriendLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "InsertFriendLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "EditFriendLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "EditFriendLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DelteFriendLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DelteFriendLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "GetFriendLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetFriendLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "InsertAlarmLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "InsertAlarmLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "EditAlarmLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "EditAlarmLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DelteAlarmLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DelteAlarmLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "GetAlarmLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetAlarmLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "UploadBucket": {
             "Type": "AWS::S3::Bucket",
             "Properties": {
@@ -1292,6 +2600,74 @@
               },
               "TableName": "aulab-voice-user-table"
             }
+          },
+          "FriendDynamoDbTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "uuid",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "type",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "uuid",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "type",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "StreamSpecification": {
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+              },
+              "TableName": "aulab-voice-friend-table"
+            }
+          },
+          "AlarmDynamoDbTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "receiver_id",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "time",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "receiver_id",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "time",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "StreamSpecification": {
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+              },
+              "TableName": "aulab-voice-alarm-table"
+            }
           }
         },
         "Outputs": {
@@ -1306,7 +2682,7 @@
           "VoicesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "VoicesLambdaVersionoflZErMgGABI9RdnLF382FFh4wf8kihQCBRwN0wXhs"
+              "Ref": "VoicesLambdaVersionZ7Ar3z1QktiVOVH0n9jq7YA1GrdUR5344SjEaGShzBs"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-VoicesLambdaFunctionQualifiedArn"
@@ -1315,7 +2691,7 @@
           "DownloadsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DownloadsLambdaVersiongJKsi4RZIWVd5bCbZ5AJl12MHjKAAsYa2XZmOG85cQc"
+              "Ref": "DownloadsLambdaVersionStoD6M4tfTuFB2tAQPCFbbgdBfaUiTakzrWtf4e8k"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-DownloadsLambdaFunctionQualifiedArn"
@@ -1324,7 +2700,7 @@
           "InsertUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "InsertUserLambdaVersion9ysJiEF0D3YSLG7ESNl7pHP0Po1FUjWiU47iOT8YBz8"
+              "Ref": "InsertUserLambdaVersionjmlCwSIidEIUu3s4nn7loDQ1ZqpXWhZD2fWA2e84Ew"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-InsertUserLambdaFunctionQualifiedArn"
@@ -1333,7 +2709,7 @@
           "EditUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "EditUserLambdaVersionGvbQ5y7XrsaqOgBITogfZHXUK4Z1nc6HHbDMJaubls"
+              "Ref": "EditUserLambdaVersionkNdfJAKKbpnqF2Jck3I5b67sYvZk5XWsxveoW3q8"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-EditUserLambdaFunctionQualifiedArn"
@@ -1342,7 +2718,7 @@
           "DelteUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DelteUserLambdaVersionW8FE44lXxcd6MgGHcrTVyMwrqLdYmocjQ0xejNXruo"
+              "Ref": "DelteUserLambdaVersionUCLE8GZNUUWjqF4Fs4Iundtfr63pisNO25CrcyadSU"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-DelteUserLambdaFunctionQualifiedArn"
@@ -1351,10 +2727,82 @@
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersionkpepCrdv5TK5W8mckFtQ9nHRAet0h0u0qPSr6tBAY"
+              "Ref": "GetUserLambdaVersion2xzk2vieqJKeRLZuNUVAqf8LQkIn3EdJrwTah8qZL8"
             },
             "Export": {
               "Name": "sls-voiceUpload-dev-GetUserLambdaFunctionQualifiedArn"
+            }
+          },
+          "InsertFriendLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "InsertFriendLambdaVersionrCMrKWgYiCmpWcNHrvZD2tG7qif9VC9WoQLxxipQIQ"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-InsertFriendLambdaFunctionQualifiedArn"
+            }
+          },
+          "EditFriendLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "EditFriendLambdaVersionAiv8sXWUr0HJ7bf2SsnRQ3WnLbmjv0tCYelG3Ubk"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-EditFriendLambdaFunctionQualifiedArn"
+            }
+          },
+          "DelteFriendLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DelteFriendLambdaVersionfqwBGmKkbLHci0gSuhQ2az37UmMBSskbhUHWKNQ2xVE"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-DelteFriendLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetFriendLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetFriendLambdaVersionOQUAmhkGokKYHuekXmsNmw8U2FKkQys4uZ1NIhXM4Yw"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-GetFriendLambdaFunctionQualifiedArn"
+            }
+          },
+          "InsertAlarmLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "InsertAlarmLambdaVersion6nT44ctSMW0cnkbEdk2JC5IsCnvdgCJwWMsChRTQg"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-InsertAlarmLambdaFunctionQualifiedArn"
+            }
+          },
+          "EditAlarmLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "EditAlarmLambdaVersion0bDXlwjOnAGh5pYlWbC6Iv7iXcozaEL0iMQCa2BAw"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-EditAlarmLambdaFunctionQualifiedArn"
+            }
+          },
+          "DelteAlarmLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DelteAlarmLambdaVersioneUvvGvxCQxlxhNtbiv1UmUNcXbddHYWdr1LJH9h6k"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-DelteAlarmLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetAlarmLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetAlarmLambdaVersionwFUYYMrO9Ma8WykGuBqlckDQWtkjOPnipVjmcdGU0"
+            },
+            "Export": {
+              "Name": "sls-voiceUpload-dev-GetAlarmLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1504,7 +2952,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "VoicesLambdaVersionoflZErMgGABI9RdnLF382FFh4wf8kihQCBRwN0wXhs"
+        "versionLogicalId": "VoicesLambdaVersionZ7Ar3z1QktiVOVH0n9jq7YA1GrdUR5344SjEaGShzBs"
       },
       "downloads": {
         "handler": "download.requestDownloadURL",
@@ -1539,7 +2987,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DownloadsLambdaVersiongJKsi4RZIWVd5bCbZ5AJl12MHjKAAsYa2XZmOG85cQc"
+        "versionLogicalId": "DownloadsLambdaVersionStoD6M4tfTuFB2tAQPCFbbgdBfaUiTakzrWtf4e8k"
       },
       "InsertUser": {
         "handler": "user.insert",
@@ -1574,7 +3022,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "InsertUserLambdaVersion9ysJiEF0D3YSLG7ESNl7pHP0Po1FUjWiU47iOT8YBz8"
+        "versionLogicalId": "InsertUserLambdaVersionjmlCwSIidEIUu3s4nn7loDQ1ZqpXWhZD2fWA2e84Ew"
       },
       "EditUser": {
         "handler": "user.edit",
@@ -1609,7 +3057,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EditUserLambdaVersionGvbQ5y7XrsaqOgBITogfZHXUK4Z1nc6HHbDMJaubls"
+        "versionLogicalId": "EditUserLambdaVersionkNdfJAKKbpnqF2Jck3I5b67sYvZk5XWsxveoW3q8"
       },
       "DelteUser": {
         "handler": "user.delete",
@@ -1644,7 +3092,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DelteUserLambdaVersionW8FE44lXxcd6MgGHcrTVyMwrqLdYmocjQ0xejNXruo"
+        "versionLogicalId": "DelteUserLambdaVersionUCLE8GZNUUWjqF4Fs4Iundtfr63pisNO25CrcyadSU"
       },
       "GetUser": {
         "handler": "user.get",
@@ -1679,7 +3127,287 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionkpepCrdv5TK5W8mckFtQ9nHRAet0h0u0qPSr6tBAY"
+        "versionLogicalId": "GetUserLambdaVersion2xzk2vieqJKeRLZuNUVAqf8LQkIn3EdJrwTah8qZL8"
+      },
+      "InsertFriend": {
+        "handler": "friend.insert",
+        "events": [
+          {
+            "http": {
+              "path": "friend",
+              "method": "post",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-InsertFriend",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "InsertFriendLambdaVersionrCMrKWgYiCmpWcNHrvZD2tG7qif9VC9WoQLxxipQIQ"
+      },
+      "EditFriend": {
+        "handler": "friend.edit",
+        "events": [
+          {
+            "http": {
+              "path": "friend",
+              "method": "put",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "PUT"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-EditFriend",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "EditFriendLambdaVersionAiv8sXWUr0HJ7bf2SsnRQ3WnLbmjv0tCYelG3Ubk"
+      },
+      "DelteFriend": {
+        "handler": "friend.delete",
+        "events": [
+          {
+            "http": {
+              "path": "friend/{id}",
+              "method": "delete",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "DELETE"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-DelteFriend",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "DelteFriendLambdaVersionfqwBGmKkbLHci0gSuhQ2az37UmMBSskbhUHWKNQ2xVE"
+      },
+      "GetFriend": {
+        "handler": "friend.get",
+        "events": [
+          {
+            "http": {
+              "path": "friend/{id}",
+              "method": "get",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-GetFriend",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "GetFriendLambdaVersionOQUAmhkGokKYHuekXmsNmw8U2FKkQys4uZ1NIhXM4Yw"
+      },
+      "InsertAlarm": {
+        "handler": "alarm.insert",
+        "events": [
+          {
+            "http": {
+              "path": "alarm",
+              "method": "post",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-InsertAlarm",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "InsertAlarmLambdaVersion6nT44ctSMW0cnkbEdk2JC5IsCnvdgCJwWMsChRTQg"
+      },
+      "EditAlarm": {
+        "handler": "alarm.edit",
+        "events": [
+          {
+            "http": {
+              "path": "alarm",
+              "method": "put",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "PUT"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-EditAlarm",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "EditAlarmLambdaVersion0bDXlwjOnAGh5pYlWbC6Iv7iXcozaEL0iMQCa2BAw"
+      },
+      "DelteAlarm": {
+        "handler": "alarm.delete",
+        "events": [
+          {
+            "http": {
+              "path": "alarm/{id}",
+              "method": "delete",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "DELETE"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-DelteAlarm",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "DelteAlarmLambdaVersioneUvvGvxCQxlxhNtbiv1UmUNcXbddHYWdr1LJH9h6k"
+      },
+      "GetAlarm": {
+        "handler": "alarm.get",
+        "events": [
+          {
+            "http": {
+              "path": "alarm/{id}",
+              "method": "get",
+              "cors": {
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "voiceUpload-dev-GetAlarm",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "GetAlarmLambdaVersionwFUYYMrO9Ma8WykGuBqlckDQWtkjOPnipVjmcdGU0"
       }
     },
     "resources": {
@@ -1742,6 +3470,74 @@
             },
             "TableName": "aulab-voice-user-table"
           }
+        },
+        "FriendDynamoDbTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "uuid",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "type",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "uuid",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "type",
+                "KeyType": "RANGE"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            },
+            "StreamSpecification": {
+              "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "TableName": "aulab-voice-friend-table"
+          }
+        },
+        "AlarmDynamoDbTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "receiver_id",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "time",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "receiver_id",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "time",
+                "KeyType": "RANGE"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 1,
+              "WriteCapacityUnits": 1
+            },
+            "StreamSpecification": {
+              "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "TableName": "aulab-voice-alarm-table"
+          }
         }
       },
       "Outputs": {}
@@ -1765,7 +3561,7 @@
     "artifact": "/Users/jaykim/joy/voice-uploader/.serverless/voiceUpload.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/voiceUpload/dev/1647072326616-2022-03-12T08:05:26.616Z",
+    "artifactDirectoryName": "serverless/voiceUpload/dev/1648879832715-2022-04-02T06:10:32.715Z",
     "artifact": "voiceUpload.zip"
   }
 }
