@@ -41,31 +41,31 @@ functions:
           method: get
           cors: true
   InsertUser:
-    handler: user.insert
+    handler: me.insert
     events:
       - http:
-          path: user
+          path: me
           method: post
           cors: true
   EditUser:
-    handler: user.edit
+    handler: me.edit
     events:
       - http:
-          path: user
+          path: me
           method: put
           cors: true
   DelteUser:
-    handler: user.delete
+    handler: me.delete
     events:
       - http:
-          path: user/{id}
+          path: me/{id}
           method: delete
           cors: true
   GetUser:
-    handler: user.get
+    handler: me.get
     events:
       - http:
-          path: user/{id}
+          path: me/{id}
           method: get
           cors: true
 
